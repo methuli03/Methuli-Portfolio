@@ -139,4 +139,46 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500);
         });
     }
+
+    // --- Hero Image Interactive Glow (Mouse Tracking & Parallax) ---
+    const imageWrapper = document.querySelector('.image-wrapper');
+    if (imageWrapper) {
+        // Create circleLight element
+        const circleLight = document.createElement('div');
+        circleLight.className = 'circleLight';
+        imageWrapper.appendChild(circleLight);
+
+        let mouse = { X: 0, Y: 0 };
+        let block = { CX: 0, CY: 0 };
+        
+        imageWrapper.addEventListener('mousemove', function(e) {
+            const rect = imageWrapper.getBoundingClientRect();
+            // Calculate center distance for 3D tilt
+            mouse.X = (e.clientX - rect.left) - rect.width / 2;
+            mouse.Y = (e.clientY - rect.top) - rect.height / 2;
+            
+            // Raw positions for glow gradient
+            const rawX = e.clientX - rect.left;
+            const rawY = e.clientY - rect.top;
+            circleLight.style.background = `radial-gradient(circle at ${rawX}px ${rawY}px, rgba(255,255,255,0.4), transparent 60%)`;
+            circleLight.style.opacity = '1';
+        });
+
+        imageWrapper.addEventListener('mouseleave', function() {
+            mouse.X = 0;
+            mouse.Y = 0;
+            circleLight.style.opacity = '0';
+        });
+
+        // 3D Tilt effect
+        setInterval(function() {
+            block.CY += (mouse.Y - block.CY) / 12;
+            block.CX += (mouse.X - block.CX) / 12;
+
+            const img = imageWrapper.querySelector('img');
+            if(img) {
+                img.style.transform = `scale(1.05) translate(${block.CX * 0.05}px, ${block.CY * 0.05}px) rotateX(${-block.CY * 0.05}deg) rotateY(${block.CX * 0.05}deg)`;
+            }
+        }, 20);
+    }
 });

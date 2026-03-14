@@ -413,6 +413,22 @@ img {
     overflow: hidden;
     box-shadow: var(--shadow-lg);
     animation: float 6s ease-in-out infinite;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.circleLight {
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: opacity 0.5s;
+    position: absolute;
+    border-radius: 20px;
+    z-index: 5;
+    pointer-events: none;
 }
 
 .image-wrapper::after {
@@ -678,83 +694,103 @@ img {
 /* =========================================
    Experience & Education Section
    ========================================= */
-.timeline-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+.listar-feature-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 5rem;
 }
 
-.timeline {
+.listar-feature-item-wrapper {
+    flex: 1 1 300px;
+    max-width: 400px;
+}
+
+.listar-feature-item-inner {
+    background-color: var(--clr-card-bg);
+    padding: 70px 30px 40px;
+    border-radius: 16px;
     position: relative;
-    border-left: 2px solid var(--clr-border);
-    margin-left: 10px;
-    padding-left: 35px;
+    height: 100%;
+    border: 1px solid var(--clr-border);
+    transition: all var(--transition-normal);
 }
 
-.timeline-item {
-    position: relative;
-    margin-bottom: 3rem;
+.listar-feature-item-inner:hover {
+    border-color: rgba(96, 165, 250, 0.4);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-8px);
 }
 
-.timeline-item:last-child {
-    margin-bottom: 0;
-}
-
-.timeline-dot {
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    background-color: var(--clr-accent-light);
+.listar-feature-icon-wrapper {
+    width: 100px;
+    height: 100px;
+    background-color: var(--clr-bg);
+    border: 3px solid var(--clr-accent-light);
     border-radius: 50%;
-    left: -44px;
-    top: 5px;
-    border: 3px solid var(--clr-bg);
-    box-shadow: 0 0 0 2px var(--clr-border), 0 0 10px rgba(96, 165, 250, 0.5);
-}
-
-.timeline-date {
-    display: inline-block;
-    padding: 0.4rem 1rem;
-    background-color: rgba(37, 99, 235, 0.1);
-    color: var(--clr-accent-light);
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    border: 1px solid rgba(37, 99, 235, 0.2);
-}
-
-.timeline-title {
-    font-size: 1.4rem;
-    margin-bottom: 0.4rem;
-    color: var(--clr-white);
-}
-
-.timeline-subtitle {
-    font-size: 1.1rem;
-    color: var(--clr-text-light);
-    font-weight: 500;
-    margin-bottom: 1.2rem;
-}
-
-.timeline-list {
-    list-style: none;
-    padding: 0;
-}
-
-.timeline-list li {
-    position: relative;
-    padding-left: 1.8rem;
-    margin-bottom: 0.8rem;
-    color: var(--clr-text-light);
-}
-
-.timeline-list li::before {
-    content: '▹';
     position: absolute;
-    left: 0;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 0 15px rgba(37, 99, 235, 0.3);
+    z-index: 10;
+}
+
+.listar-image-icon {
+    font-size: 35px;
     color: var(--clr-accent-light);
-    font-weight: bold;
+    text-shadow: var(--glow-primary);
+}
+
+.listar-feature-content-wrapper {
+    text-align: center;
+}
+
+.listar-feature-item-title > span {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--clr-bg-light);
+    padding: 8px 15px 8px 35px;
+    border-radius: 50px;
+    position: relative;
+    font-family: var(--font-heading);
+    color: var(--clr-heading);
+    font-size: 1.1rem;
+    border: 1px solid var(--clr-border);
+    margin-bottom: 1.5rem;
+}
+
+.listar-feature-item-title span span {
+    position: absolute;
+    left: -15px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--clr-accent);
+    color: var(--clr-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 800;
+    box-shadow: var(--glow-primary);
+}
+
+.listar-feature-item-excerpt {
+    color: var(--clr-text-light);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.listar-feature-item-excerpt strong {
+    color: var(--clr-text-main);
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.15rem;
 }
 
 .certifications-list {
