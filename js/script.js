@@ -100,6 +100,18 @@ document.addEventListener('DOMContentLoaded', () => {
         skillObserver.observe(bar);
     });
 
+    // --- Project Card Mouse Tracking (Glow Effect) ---
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+
     // --- Contact Form Submission (Prevent Default for Demo) ---
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
