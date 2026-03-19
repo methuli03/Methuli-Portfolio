@@ -1020,52 +1020,52 @@ img {
     box-shadow: var(--glow-primary);
 }
 
-.contact-form-simple {
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.form-group {
-    margin-bottom: 2rem;
-}
-
-.form-group label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 0.8rem;
-    color: var(--clr-text-main);
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 1.2rem;
-    border: 1px solid var(--clr-border);
-    border-radius: 10px;
-    font-family: inherit;
-    font-size: 1rem;
-    background-color: var(--clr-bg);
-    color: var(--clr-white);
-    transition: all var(--transition-fast);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--clr-accent-light);
-    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
-}
-
-.submit-btn {
-    width: 100%;
+.contact-direct-links {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 0.8rem;
-    padding: 1.2rem;
-    font-size: 1.1rem;
-    border-radius: 10px;
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
+
+.direct-link-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 1.2rem;
+    color: var(--clr-text-main);
+    padding: 1rem 2rem;
+    background-color: var(--clr-card-bg);
+    border: 1px solid var(--clr-border);
+    border-radius: 12px;
+    transition: all var(--transition-normal);
+    width: 100%;
+    max-width: 500px;
+    justify-content: center;
+}
+
+.direct-link-item i {
+    color: var(--clr-accent-light);
+    font-size: 1.4rem;
+}
+
+.direct-link-item a {
+    color: var(--clr-text-main);
+    font-weight: 500;
+}
+
+.direct-link-item:hover {
+    background-color: rgba(37, 99, 235, 0.05);
+    border-color: var(--clr-accent);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.direct-link-item:hover a {
+    color: var(--clr-accent-light);
+}
+
+/* Footer is handled below */
 
 /* =========================================
    Footer
