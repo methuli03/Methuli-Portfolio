@@ -82,33 +82,6 @@
     100% { transform: rotate(360deg); }
 }
 
-/* Professional Custom Cursor - Minimalist Dot & Ring */
-.cursor-dot, .cursor-dot-outline {
-    pointer-events: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    opacity: 0;
-    transform: translate(-50%, -50%);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    z-index: 10000;
-}
-
-.cursor-dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--clr-accent-light);
-    box-shadow: 0 0 10px var(--clr-accent-light);
-    border-radius: 50%;
-}
-
-.cursor-dot-outline {
-    width: 32px;
-    height: 32px;
-    border: 1.5px solid rgba(37, 99, 235, 0.4);
-    border-radius: 50%;
-}
-
 /* =========================================
    Reset & Base Styles
    ========================================= */
@@ -129,7 +102,6 @@ body {
     color: var(--clr-text-main);
     line-height: 1.6;
     overflow-x: hidden;
-    cursor: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -142,11 +114,10 @@ a {
     text-decoration: none;
     color: inherit;
     transition: color var(--transition-normal);
-    cursor: none;
 }
 
 button {
-    cursor: none;
+    cursor: pointer;
 }
 
 ul {
