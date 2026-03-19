@@ -1,0 +1,3 @@
+@echo off
+echo Opening Methuli's Portfolio in your default web browser...
+start index.html
