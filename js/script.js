@@ -112,31 +112,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Contact Form Submission (Prevent Default for Demo) ---
+    // --- Contact Form Submission (WhatsApp Integration) ---
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const submitBtn = contactForm.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
             
-            submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            if (!name || !email || !message) return;
+            
+            // Build WhatsApp message
+            const whatsappMessage = `Hello Methuli! 👋\n\n*From:* ${name}\n*Email:* ${email}\n\n*Message:*\n${message}`;
+            
+            // Sri Lanka phone number (077564663 → international: 9477564663)
+            const phoneNumber = '9477564663';
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+            
+            // Show sending state
+            submitBtn.innerHTML = 'Opening WhatsApp... <i class="fa-brands fa-whatsapp"></i>';
             submitBtn.disabled = true;
             
-            // Simulate form submisson
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+            
+            // Show success state
             setTimeout(() => {
-                submitBtn.innerHTML = 'Message Sent! <i class="fa-solid fa-check"></i>';
-                submitBtn.style.backgroundColor = '#10b981'; // Success green color
-                submitBtn.style.borderColor = '#10b981';
+                submitBtn.innerHTML = 'Message Ready! <i class="fa-solid fa-check"></i>';
+                submitBtn.style.backgroundColor = '#25D366';
+                submitBtn.style.borderColor = '#25D366';
                 contactForm.reset();
                 
                 setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
+                    submitBtn.innerHTML = 'Send via WhatsApp <i class="fa-brands fa-whatsapp"></i>';
                     submitBtn.style.backgroundColor = '';
                     submitBtn.style.borderColor = '';
                     submitBtn.disabled = false;
                 }, 3000);
-            }, 1500);
+            }, 1000);
         });
     }
 
