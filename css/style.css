@@ -82,13 +82,12 @@
     100% { transform: rotate(360deg); }
 }
 
-/* Custom Cursor */
+/* Custom Cursor - Pink Heart */
 .cursor-dot, .cursor-dot-outline {
     pointer-events: none;
     position: fixed;
     top: 50%;
     left: 50%;
-    border-radius: 50%;
     opacity: 0;
     transform: translate(-50%, -50%);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -96,16 +95,16 @@
 }
 
 .cursor-dot {
-    width: 8px;
-    height: 8px;
-    background-color: var(--clr-accent-light);
-    box-shadow: 0 0 10px var(--clr-accent-light);
+    font-size: 24px;
+    line-height: 1;
+    filter: drop-shadow(0 0 6px rgba(255, 105, 180, 0.8));
 }
 
 .cursor-dot-outline {
-    width: 40px;
-    height: 40px;
-    border: 2px solid var(--clr-accent-light);
+    width: 45px;
+    height: 45px;
+    border: 2px solid rgba(255, 105, 180, 0.5);
+    border-radius: 50%;
 }
 
 /* =========================================
@@ -128,6 +127,7 @@ body {
     color: var(--clr-text-main);
     line-height: 1.6;
     overflow-x: hidden;
+    cursor: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -140,6 +140,11 @@ a {
     text-decoration: none;
     color: inherit;
     transition: color var(--transition-normal);
+    cursor: none;
+}
+
+button {
+    cursor: none;
 }
 
 ul {
@@ -442,6 +447,7 @@ img {
     margin-bottom: 2.5rem;
     color: var(--clr-text-main);
     animation-delay: 0.4s;
+    text-align: justify;
 }
 
 .hero-buttons {
@@ -541,7 +547,7 @@ img {
     max-width: 800px;
     margin: 0 auto;
     font-size: 1.15rem;
-    text-align: center;
+    text-align: justify;
 }
 
 .about-text {
@@ -745,6 +751,7 @@ img {
     color: var(--clr-text-light);
     margin-bottom: 1.5rem;
     flex-grow: 1;
+    text-align: justify;
 }
 
 .project-tech {
@@ -857,6 +864,7 @@ img {
     color: var(--clr-text-light);
     font-size: 1.05rem;
     line-height: 1.6;
+    text-align: justify;
 }
 
 .listar-feature-item-excerpt strong {

@@ -11,9 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 800);
     });
 
-    // --- Custom Cursor ---
+    // --- Custom Cursor (Pink Heart) ---
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-dot-outline');
+
+    // Set heart emoji as cursor
+    cursorDot.innerHTML = '💖';
 
     window.addEventListener('mousemove', (e) => {
         const posX = e.clientX;
@@ -35,11 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a, button').forEach(link => {
         link.addEventListener('mouseenter', () => {
             cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+            cursorOutline.style.borderColor = 'rgba(255, 105, 180, 0.8)';
+            cursorDot.style.transform = 'translate(-50%, -50%) scale(1.3)';
         });
         link.addEventListener('mouseleave', () => {
             cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorOutline.style.borderColor = 'var(--clr-accent-light)';
+            cursorOutline.style.borderColor = 'rgba(255, 105, 180, 0.5)';
+            cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
         });
     });
     
@@ -155,40 +160,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Contact Form Submission (Email Integration) ---
+    // --- Contact Form Submission (FormSubmit AJAX) ---
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const submitBtn = contactForm.querySelector('.submit-btn');
             
-            // Get form values
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-            
-            if (!name || !email || !message) return;
-            
-            // Build email
-            const toEmail = 'jayawickramamethuli@gmail.com';
-            const subject = `Portfolio Contact from ${name}`;
-            const body = `Hi Methuli,\n\nYou have a new message from your portfolio website.\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\n---\nSent from your Portfolio Contact Form`;
-            
-            const mailtoURL = `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
             // Show sending state
-            submitBtn.innerHTML = 'Opening Email... <i class="fa-solid fa-spinner fa-spin"></i>';
+            submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
             submitBtn.disabled = true;
             
-            // Open email client
-            window.location.href = mailtoURL;
+            // Send via AJAX to FormSubmit
+            const formData = new FormData(contactForm);
             
-            // Show success state
-            setTimeout(() => {
-                submitBtn.innerHTML = 'Email Ready! <i class="fa-solid fa-check"></i>';
-                submitBtn.style.backgroundColor = '#10b981';
-                submitBtn.style.borderColor = '#10b981';
-                contactForm.reset();
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    submitBtn.innerHTML = 'Message Sent! <i class="fa-solid fa-check"></i>';
+                    submitBtn.style.backgroundColor = '#10b981';
+                    submitBtn.style.borderColor = '#10b981';
+                    contactForm.reset();
+                } else {
+                    submitBtn.innerHTML = 'Error! Try Again <i class="fa-solid fa-xmark"></i>';
+                    submitBtn.style.backgroundColor = '#ef4444';
+                    submitBtn.style.borderColor = '#ef4444';
+                }
                 
                 setTimeout(() => {
                     submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
@@ -196,7 +199,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     submitBtn.style.borderColor = '';
                     submitBtn.disabled = false;
                 }, 3000);
-            }, 1000);
+            })
+            .catch(() => {
+                submitBtn.innerHTML = 'Error! Try Again <i class="fa-solid fa-xmark"></i>';
+                submitBtn.style.backgroundColor = '#ef4444';
+                submitBtn.style.borderColor = '#ef4444';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
+                    submitBtn.style.backgroundColor = '';
+                    submitBtn.style.borderColor = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            });
         });
     }
 
