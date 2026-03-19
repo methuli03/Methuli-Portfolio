@@ -32,9 +32,36 @@
     --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
     --shadow-hover: 0 0 20px rgba(37, 99, 235, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
     
-    /* Glow */
+    /* Glow & Glass */
     --glow-primary: 0 0 15px rgba(37, 99, 235, 0.5);
+    --glass-bg: rgba(10, 17, 32, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-blur: blur(12px);
+    
+    /* Reveal Defaults */
+    --reveal-distance: 30px;
+    --reveal-duration: 0.8s;
 }
+
+/* --- Dynamic Background Light Blobs --- */
+body::before {
+    content: '';
+    position: fixed;
+    top: -100px;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.15), transparent 70%);
+    filter: blur(80px);
+    z-index: -1;
+    animation: moveLight 20s infinite alternate linear;
+}
+
+@keyframes moveLight {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(100vw, 100vh); }
+}
+
 
 /* =========================================
    Preloader & Custom Cursor
@@ -81,6 +108,33 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* --- Global Reveal Animations --- */
+.reveal-up, .reveal-left, .reveal-right {
+    opacity: 0;
+    transition: all var(--reveal-duration) var(--transition-normal);
+}
+
+.reveal-up { transform: translateY(var(--reveal-distance)); }
+.reveal-left { transform: translateX(calc(var(--reveal-distance) * -1)); }
+.reveal-right { transform: translateX(var(--reveal-distance)); }
+
+.reveal-up.active, .reveal-left.active, .reveal-right.active {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* --- Floating Image Effect --- */
+.floating-img {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(1deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
 
 /* =========================================
    Reset & Base Styles
@@ -893,27 +947,52 @@ img {
 }
 
 .contact-cat-box {
-    background: var(--clr-bg);
-    padding: 3rem;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    padding: 3.5rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--glass-border);
+    transition: all var(--transition-normal);
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.contact-cat-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.contact-cat-box:hover::before {
+    transform: translateX(100%);
 }
 
 .contact-cat-box:hover {
-    transform: translateY(-5px);
-    border-color: var(--clr-accent);
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--clr-accent-light);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(37, 99, 235, 0.25);
 }
 
 .cat-title {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
-    margin-bottom: 2rem;
-    color: var(--clr-accent-light);
+    font-size: 1.85rem;
+    letter-spacing: -0.8px;
+    margin-bottom: 2.5rem;
+    color: var(--clr-white);
+    font-weight: 800;
     position: relative;
-    padding-bottom: 15px;
+    padding-bottom: 20px;
 }
 
 .cat-title:after {

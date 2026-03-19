@@ -123,9 +123,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Contact Form Submission ---
-    // Zero-interference Pure HTML Submission
+    // --- Scroll Reveal Animation Observer ---
+    const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.15 });
 
+    revealElements.forEach(el => revealObserver.observe(el));
 
     // --- Hero Image Interactive Glow (Mouse Tracking & Parallax) ---
     const imageWrapper = document.querySelector('.image-wrapper');
