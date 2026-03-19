@@ -415,6 +415,7 @@ img {
     animation: float 6s ease-in-out infinite;
     perspective: 1000px;
     transform-style: preserve-3d;
+    margin-top: 2rem;
 }
 
 .circleLight {
