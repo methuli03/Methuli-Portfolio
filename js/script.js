@@ -11,12 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 800);
     });
 
-    // --- Custom Cursor (Pink Heart) ---
+    // --- Custom Cursor (Professional) ---
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-dot-outline');
-
-    // Set heart emoji as cursor
-    cursorDot.innerHTML = '💖';
 
     window.addEventListener('mousemove', (e) => {
         const posX = e.clientX;
@@ -38,12 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a, button').forEach(link => {
         link.addEventListener('mouseenter', () => {
             cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursorOutline.style.borderColor = 'rgba(255, 105, 180, 0.8)';
-            cursorDot.style.transform = 'translate(-50%, -50%) scale(1.3)';
+            cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+            cursorDot.style.transform = 'translate(-50%, -50%) scale(1.2)';
         });
         link.addEventListener('mouseleave', () => {
             cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorOutline.style.borderColor = 'rgba(255, 105, 180, 0.5)';
+            cursorOutline.style.borderColor = 'rgba(37, 99, 235, 0.4)';
             cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
         });
     });

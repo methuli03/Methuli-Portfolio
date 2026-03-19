@@ -82,7 +82,7 @@
     100% { transform: rotate(360deg); }
 }
 
-/* Custom Cursor - Pink Heart */
+/* Professional Custom Cursor - Minimalist Dot & Ring */
 .cursor-dot, .cursor-dot-outline {
     pointer-events: none;
     position: fixed;
@@ -95,15 +95,17 @@
 }
 
 .cursor-dot {
-    font-size: 24px;
-    line-height: 1;
-    filter: drop-shadow(0 0 6px rgba(255, 105, 180, 0.8));
+    width: 6px;
+    height: 6px;
+    background-color: var(--clr-accent-light);
+    box-shadow: 0 0 10px var(--clr-accent-light);
+    border-radius: 50%;
 }
 
 .cursor-dot-outline {
-    width: 45px;
-    height: 45px;
-    border: 2px solid rgba(255, 105, 180, 0.5);
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid rgba(37, 99, 235, 0.4);
     border-radius: 50%;
 }
 
