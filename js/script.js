@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Contact Form Submission (WhatsApp Integration) ---
+    // --- Contact Form Submission (Email Integration) ---
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
@@ -126,29 +126,29 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (!name || !email || !message) return;
             
-            // Build WhatsApp message
-            const whatsappMessage = `Hello Methuli! 👋\n\n*From:* ${name}\n*Email:* ${email}\n\n*Message:*\n${message}`;
+            // Build email
+            const toEmail = 'jayawickramamethuli@gmail.com';
+            const subject = `Portfolio Contact from ${name}`;
+            const body = `Hi Methuli,\n\nYou have a new message from your portfolio website.\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\n---\nSent from your Portfolio Contact Form`;
             
-            // Sri Lanka phone number (077564663 → international: 9477564663)
-            const phoneNumber = '9477564663';
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+            const mailtoURL = `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             
             // Show sending state
-            submitBtn.innerHTML = 'Opening WhatsApp... <i class="fa-brands fa-whatsapp"></i>';
+            submitBtn.innerHTML = 'Opening Email... <i class="fa-solid fa-spinner fa-spin"></i>';
             submitBtn.disabled = true;
             
-            // Open WhatsApp
-            window.open(whatsappURL, '_blank');
+            // Open email client
+            window.location.href = mailtoURL;
             
             // Show success state
             setTimeout(() => {
-                submitBtn.innerHTML = 'Message Ready! <i class="fa-solid fa-check"></i>';
-                submitBtn.style.backgroundColor = '#25D366';
-                submitBtn.style.borderColor = '#25D366';
+                submitBtn.innerHTML = 'Email Ready! <i class="fa-solid fa-check"></i>';
+                submitBtn.style.backgroundColor = '#10b981';
+                submitBtn.style.borderColor = '#10b981';
                 contactForm.reset();
                 
                 setTimeout(() => {
-                    submitBtn.innerHTML = 'Send via WhatsApp <i class="fa-brands fa-whatsapp"></i>';
+                    submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
                     submitBtn.style.backgroundColor = '';
                     submitBtn.style.borderColor = '';
                     submitBtn.disabled = false;
