@@ -82,7 +82,7 @@
             </div>
             <div class="hero-image reveal-right">
                 <div class="image-wrapper">
-                    <img src="assets/profile.jpg" alt="Methuli Jayawickrama" class="hero-image">
+                    <img src="./assets/profile.jpg" alt="Methuli Jayawickrama Profile Image" loading="lazy">
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
     <section id="about" class="about section bg-light">
         <div class="container">
             <div class="section-heading reveal-up">
-                <h2><span class="text-gradient">About Me</span></h2>
+                <h2>About Me</h2>
                 <div class="line"></div>
             </div>
 
@@ -288,7 +288,7 @@
     <section id="projects" class="projects section bg-light">
         <div class="container">
             <div class="section-heading reveal-up">
-                <h2><span class="text-gradient">Featured Projects</span></h2>
+                <h2>Featured Projects</h2>
                 <div class="line"></div>
             </div>
 
@@ -568,50 +568,41 @@
     </section>
 
     <section id="contact" class="contact section bg-light">
-        <div class="container text-center">
-            <div class="section-heading reveal-up">
-                <h2><span class="text-gradient">Let's Connect</span></h2>
+        <div class="container">
+            <div class="section-heading text-center reveal-up">
+                <h2>Contact Me</h2>
                 <div class="line"></div>
-                <p class="section-subtitle">Feel free to reach out via any of these channels. I'm always open to new opportunities and collaborations!</p>
+                <p>Feel free to reach out to me for any inquiries, collaborations or just to say hi!</p>
             </div>
 
-            <div class="contact-categories-grid">
-                <!-- Direct Reach -->
-                <div class="contact-cat-box reveal-left">
-                    <h3 class="cat-title">Direct Reach</h3>
-                    <div class="cat-links">
-                        <div class="cat-link-item">
-                            <i class="fa-solid fa-envelope"></i>
-                            <a href="mailto:jayawickramamethuli@gmail.com">jayawickramamethuli@gmail.com</a>
-                        </div>
-                        <div class="cat-link-item">
-                            <i class="fa-solid fa-phone"></i>
-                            <a href="tel:077564663">077564663</a>
-                        </div>
+            <div class="contact-form-simple reveal-up">
+                <form action="https://formspree.io/f/xvgzpyzo" method="POST" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="Name" placeholder="Your Name" required>
                     </div>
-                </div>
-
-                <!-- Professional Presence -->
-                <div class="contact-cat-box reveal-right">
-                    <h3 class="cat-title">Professional Presence</h3>
-                    <div class="cat-links">
-                        <div class="cat-link-item">
-                            <i class="fa-brands fa-linkedin-in"></i>
-                            <a href="https://linkedin.com/in/methuli-jayawickrama" target="_blank">LinkedIn Profile</a>
-                        </div>
-                        <div class="cat-link-item">
-                            <i class="fa-brands fa-github"></i>
-                            <a href="https://github.com/methuli03" target="_blank">GitHub Projects</a>
-                        </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="Email" placeholder="Your Email" required>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="Message" rows="5" placeholder="Your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit-btn">Send Message <i
+                            class="fa-solid fa-paper-plane"></i></button>
+                </form>
             </div>
         </div>
     </section>
 
-    <footer class="footer section py-4">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2026 Methuli Jayawickrama. All Rights Reserved.</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container text-center">
+            <div class="footer-logo mb-3">M<span>J</span>.</div>
+            <p class="footer-text mb-4">Dedicated to building premium software experiences for the modern web.</p>
+            <div class="footer-bottom-line"></div>
+            <p class="footer-copyright mt-4">© 2026 Methuli Jayawickrama — Software Engineering Portfolio</p>
         </div>
     </footer>
 
