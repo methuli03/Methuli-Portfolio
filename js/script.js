@@ -124,13 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Contact Form Submission ---
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', () => {
-            const submitBtn = contactForm.querySelector('.submit-btn');
-            submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
-        });
-    }
+    // Zero-interference Pure HTML Submission
+
 
     // --- Hero Image Interactive Glow (Mouse Tracking & Parallax) ---
     const imageWrapper = document.querySelector('.image-wrapper');
