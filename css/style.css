@@ -470,7 +470,7 @@ img {
     margin-bottom: 2.5rem;
     color: var(--clr-text-main);
     animation-delay: 0.4s;
-    text-align: justify;
+    text-align: left;
 }
 
 .hero-buttons {
@@ -570,7 +570,7 @@ img {
     max-width: 800px;
     margin: 0 auto;
     font-size: 1.15rem;
-    text-align: justify;
+    text-align: left;
 }
 
 .about-text {
