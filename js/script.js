@@ -1,5 +1,48 @@
 document.addEventListener('DOMContentLoaded', () => {
     
+    // --- Preloader Fade Out ---
+    const preloader = document.getElementById('preloader');
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        }, 800);
+    });
+
+    // --- Custom Cursor ---
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-dot-outline');
+
+    window.addEventListener('mousemove', (e) => {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        cursorDot.style.left = `${posX}px`;
+        cursorDot.style.top = `${posY}px`;
+        cursorDot.style.opacity = '1';
+
+        // Animate outline with a slight lag
+        cursorOutline.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+        }, { duration: 500, fill: 'forwards' });
+        cursorOutline.style.opacity = '1';
+    });
+
+    // Hover effect for links
+    document.querySelectorAll('a, button').forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            cursorOutline.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+        });
+        link.addEventListener('mouseleave', () => {
+            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursorOutline.style.borderColor = 'var(--clr-accent-light)';
+        });
+    });
+    
     // --- Sticky Navbar ---
     const navbar = document.getElementById('navbar');
     
