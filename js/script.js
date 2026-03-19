@@ -123,61 +123,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Contact Form Submission (Advanced AJAX) ---
+    // --- Contact Form Submission ---
+    // Pure HTML POST for 100% Reliability and no QUIC errors
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+        contactForm.addEventListener('submit', () => {
             const submitBtn = contactForm.querySelector('.submit-btn');
-            
-            // Show sending state
             submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
             submitBtn.disabled = true;
-            
-            // Build perfect data packet for FormSubmit
-            const formData = new FormData(contactForm);
-            const dataPacket = new URLSearchParams(formData).toString();
-            
-            fetch(contactForm.action, {
-                method: 'POST',
-                body: dataPacket,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    submitBtn.innerHTML = 'Message Sent! <i class="fa-solid fa-check"></i>';
-                    submitBtn.style.backgroundColor = '#10b981';
-                    submitBtn.style.color = '#fff';
-                    contactForm.reset();
-                    
-                    // Simple "Thank You" alert for user feedback
-                    setTimeout(() => alert('Thank you! Your message has been sent successfully.'), 500);
-                } else {
-                    throw new Error('Form error');
-                }
-                
-                setTimeout(() => {
-                    submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
-                    submitBtn.style.backgroundColor = '';
-                    submitBtn.style.color = '';
-                    submitBtn.disabled = false;
-                }, 3000);
-            })
-            .catch(() => {
-                submitBtn.innerHTML = 'Error! Try Again <i class="fa-solid fa-xmark"></i>';
-                submitBtn.style.backgroundColor = '#ef4444';
-                submitBtn.style.color = '#fff';
-                
-                setTimeout(() => {
-                    submitBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
-                    submitBtn.style.backgroundColor = '';
-                    submitBtn.style.color = '';
-                    submitBtn.disabled = false;
-                }, 3000);
-            });
+            // The browser will naturally submit the form now!
         });
     }
 
