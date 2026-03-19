@@ -124,16 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Contact Form Submission ---
-    // Pure HTML POST for 100% Reliability and no QUIC errors
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', () => {
-            const submitBtn = contactForm.querySelector('.submit-btn');
-            submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
-            submitBtn.disabled = true;
-            // The browser will naturally submit the form now!
-        });
-    }
+    // Pure, Natural Form Submission Check
+
 
     // --- Hero Image Interactive Glow (Mouse Tracking & Parallax) ---
     const imageWrapper = document.querySelector('.image-wrapper');
